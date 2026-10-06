@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Security Lab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header>
+            <p class="eyebrow">SECURITY LAB / 001</p>
+            <h1>Password Security Lab</h1>
+            <p class="subtitle">
+                Explore password entropy, hashing, and salting through an
+                interactive security simulation.
+            </p>
+        </header>
+
+        <section class="warning">
+            <strong>Educational demonstration</strong>
+            <span>
+                Use a fictional password. Never enter a password used for a
+                real account.
+            </span>
+        </section>
+
+        <section class="input-panel">
+
+            <label for="password">Test password</label>
+
+            <div class="password-row">
+                <input
+                    type="text"
+                    id="password"
+                    placeholder="Enter a fictional password..."
+                    autocomplete="off"
+                >
+
+                <button id="analyzeButton">
+                    Analyze
+                </button>
+            </div>
+
+        </section>
+
+        <section id="results" class="results hidden">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ANALYSIS</p>
+                    <h2>Password characteristics</h2>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-label">Length</span>
+                    <strong id="length">—</strong>
+                    <span class="stat-unit">characters</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Entropy</span>
+                    <strong id="entropy">—</strong>
+                    <span class="stat-unit">bits</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Strength</span>
+                    <strong id="strength">—</strong>
+                    <span class="stat-unit">classification</span>
+                </div>
+
+            </div>
+
+            <div class="security-flow">
+
+                <div class="flow-heading">
+                    <p class="eyebrow">STORAGE SIMULATION</p>
+                    <h2>What happens to the password?</h2>
+                </div>
+
+                <div class="flow">
+
+                    <div class="flow-card">
+                        <span class="flow-number">01</span>
+                        <h3>Plaintext</h3>
+                        <p>
+                            Storing passwords directly would expose the
+                            original password if the database were leaked.
+                        </p>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-card">
+                        <span class="flow-number">02</span>
+                        <h3>SHA-256</h3>
+                        <p>
+                            A one-way cryptographic hash transforms the
+                            password into a fixed-length value.
+                        </p>
+                        <code id="sha256">—</code>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-card">
+                        <span class="flow-number">03</span>
+                        <h3>Salt + Hash</h3>
+                        <p>
+                            A unique random salt changes the resulting hash
+                            even when passwords are identical.
+                        </p>
+                       <code id="salt">—</code>
+<code id="saltedHash">—</code>
+
+<p class="salt-note">
+    Same password + different salt produces a different hash.
+</p>
+
+<code id="saltTwo">—</code>
+<code id="saltedHashTwo">—</code>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="concepts">
+
+            <p class="eyebrow">CONCEPTS</p>
+
+            <div class="concept-grid">
+
+                <article>
+                    <h3>Entropy</h3>
+                    <p>
+                        Estimates the uncertainty of a password based on its
+                        length and character space.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Hashing</h3>
+                    <p>
+                        Converts input into a fixed-length representation
+                        that cannot practically be reversed.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Salting</h3>
+                    <p>
+                        Adds a unique random value before hashing to prevent
+                        identical passwords from producing identical hashes.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <footer>
+            <span>Password Security Lab</span>
+            <span>Built with Python + Flask</span>
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
